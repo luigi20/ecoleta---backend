@@ -1,8 +1,25 @@
-const knex = require('knex');
+import knex from 'knex';
+import path from 'path';
 
-const configuration = require('../../knexfile');
+const connection = knex({
+    client: 'pg',
+    connection: {
+        database: 'ecoleta',
+        user: 'postgres',
+        password: '4l9u2i7s',
+        host: 'localhost',
+        port: 5432
+    },
+    pool: {
+        min: 2,
+        max: 10
+    },
+    migrations: {
+        directory: path.resolve(__dirname, 'src', 'database', 'migrations')
+    },
+    seeds: {
+        directory: path.resolve(__dirname, 'src', 'database', 'seeds')
+    }
+})
 
-const connection = knex(configuration.development);
-
-
-module.exports = connection;
+export default connection;

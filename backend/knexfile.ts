@@ -1,3 +1,4 @@
+import path from 'path';
 module.exports = {
     client: 'pg',
     connection: {
@@ -5,17 +6,16 @@ module.exports = {
         user: 'postgres',
         password: '4l9u2i7s',
         host: 'localhost',
-        port: 5432,
-        extension: 'ts'
+        port: 5432
     },
     pool: {
         min: 2,
         max: 10
     },
     migrations: {
-        directory: './src/database/migrations'
+        directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     },
     seeds: {
-        directory: './src/database/seeds'
+        directory: path.resolve(__dirname, 'src', 'database', 'seeds')
     }
 };
